@@ -1,0 +1,352 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.5;
+  overflow-y: scroll;
+}
+
+.app {
+  display: grid;
+  grid-template-columns: 35rem 1fr;
+}
+
+.sidebar {
+  width: 35rem;
+  min-height: 100vh;
+  background: #0086c2;
+
+  &__cat-form-cont {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  &__cat-form {
+    position: absolute;
+    background: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 3rem;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 5px;
+
+    &-close {
+      position: absolute;
+      background: rgba(#fff, 0.5);
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50px;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      right: 0;
+      top: 0;
+      transform: translateY(-125%);
+      cursor: pointer;
+      img {
+        width: 2rem;
+      }
+    }
+
+    &-field {
+      margin-bottom: 2rem;
+    }
+    &-label {
+      text-transform: uppercase;
+      display: block;
+      font-weight: 700;
+      color: grey;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    &-input {
+      padding: 2rem;
+      border: none;
+      border: none;
+      background: #eee;
+      width: 100%;
+      border-radius: 5px;
+      color: #777;
+      font-size: 1.8rem;
+      font-weight: 700;
+
+      /* Code for Modern Browsers */
+&::placeholder { 
+  color: #999;
+  font-size: 1.8rem;
+  
+}
+
+/* Code for WebKit, Blink, Edge */
+&::-webkit-input-placeholder { 
+  color: #999;
+  font-size: 1.8rem;
+  
+}
+  
+/* Code for Internet Explorer 10-11 */
+&:-ms-input-placeholder { 
+  color: #999;
+  font-size: 1.8rem;
+  
+}
+  
+/* Code for Microsoft Edge */
+&::-ms-input-placeholder { 
+  color: #999;
+  font-size: 1.8rem;
+  
+}
+  
+/* Code for Mozilla Firefox 4 to 18 */
+&:-moz-placeholder { 
+  opacity: 1;        
+  color: #999;
+  font-size: 1.8rem;
+  
+}
+  
+/* Code for Mozilla Firefox 19+ */
+&::-moz-placeholder { 
+  opacity: 1;
+  color: #999;
+  font-size: 1.8rem;
+  
+}
+
+
+      &:focus {
+        outline: none;
+      }
+    }
+    &-submit {
+      padding: 2rem;
+      border: none;
+      border: 1px solid #0086c2;
+      background: #0086c2;
+      width: 100%;
+      border-radius: 5px;
+      color: #fff;
+      font-size: 1.8rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+  }
+
+  &__upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: #0078ae;
+    border-radius: 5px;
+    padding: 3rem 2rem;
+    &-title {
+      font-size: 2rem;
+      color: #fff;
+    }
+    &-action {
+      width: 4rem;
+      height: 4rem;
+      border: none;
+      font-weight: bold;
+      font-size: 2.5rem;
+      border-radius: 50px;
+      background: #0086c2;
+      color: #fff;
+      background: #fff;
+      color: #0078ae;
+      cursor: pointer;
+    }
+  }
+
+  &__cat-list-cont {
+    padding: 0rem 0rem;
+  }
+  &__cat-list {
+    list-style: none;
+  }
+  &__cat {
+    color: #fff;
+    font-size: 1.8rem;
+    padding: 3rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &--active {
+      background: rgba(#fff, 0.2);
+    }
+
+    &:hover {
+      background: rgba(#fff, 0.1);
+    }
+    &-trash-icon-cont {
+      padding: 1rem;
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s;
+      &:hover {
+        background: rgba(#fff, 0.3);
+      }
+    }
+    &-trash-icon {
+      width: 100%;
+    }
+  }
+}
+
+.main {
+  min-height: 100vh;
+  background: #eee;
+}
+
+.task-form {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  padding: 0 3rem;
+  justify-content: space-between;
+  box-shadow: 0 10px 100px rgba(#999, 0.1);
+  &__input {
+    flex-grow: 1;
+    border: none;
+    min-height: 10rem;
+    padding: 0 2rem 0 0;
+
+    font-size: 2rem;
+    color: #666;
+    font-weight: 700;
+    &:focus {
+      outline: none;
+    }
+    /* Code for Modern Browsers */
+    &::placeholder {
+      color: rgb(180, 180, 180);
+    }
+
+    /* Code for WebKit, Blink, Edge */
+    &::-webkit-input-placeholder {
+      color: rgb(180, 180, 180);
+    }
+
+    /* Code for Internet Explorer 10-11 */
+    &:-ms-input-placeholder {
+      color: rgb(180, 180, 180);
+    }
+
+    /* Code for Microsoft Edge */
+    &::-ms-input-placeholder {
+      color: rgb(180, 180, 180);
+    }
+
+    /* Code for Mozilla Firefox 4 to 18 */
+    &:-moz-placeholder {
+      opacity: 1;
+      color: rgb(180, 180, 180);
+    }
+
+    /* Code for Mozilla Firefox 19+ */
+    &::-moz-placeholder {
+      opacity: 1;
+      color: rgb(180, 180, 180);
+    }
+  }
+  &__submit {
+    background: rgb(4, 219, 4);
+    border: none;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 3rem;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    width: 5rem;
+    height: 5rem;
+    cursor: pointer;
+    padding: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &-icon {
+      width: 100%;
+    }
+  }
+}
+
+.tasks {
+  padding: 5rem;
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 3rem;
+    max-width: 150rem;
+    margin: auto;
+  }
+  &__list-item {
+    background: #fff;
+    padding: 2.5rem;
+    border-radius: 5px;
+    box-shadow: 0 10px 100px rgba(#999, 0.1);
+    &-upper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    &-cat-name {
+      font-weight: 700;
+      font-size: 1.2rem;
+      background: rgb(4, 219, 4);
+      color: #fff;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 50px;
+      letter-spacing: 1px;
+    }
+    &-trash-icon-cont {
+      width: 4rem;
+      height: 4rem;
+      border-radius: 50px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover {
+        background: #eee;
+      }
+    }
+    &-trash-icon {
+      width: 100%;
+    }
+    &-heading {
+      font-size: 2.2rem;
+      color: #666;
+      margin-bottom: 1rem;
+    }
+    &-desc {
+      color: #777;
+      font-size: 1.5rem;
+    }
+  }
+}
