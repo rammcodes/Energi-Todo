@@ -10,6 +10,7 @@ class Main extends Component {
       onTaskText,
       onTaskSubmit,
       onTaskDelete,
+      setSmallSidebar
     } = this.props
     return (
       <div className="main">
@@ -60,6 +61,9 @@ class Main extends Component {
             </div>
           ) : null}
         </div>
+        <button onClick={() => setSmallSidebar(false)} className="sidebar-btn">
+            Categories
+        </button>
       </div>
     )
   }

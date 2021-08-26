@@ -12,11 +12,12 @@ class Sidebar extends Component {
       onCatText,
       onCatSubmit,
       onCatDelete,
+      sidebarSm
     } = this.props
 
     return (
       <div className="sidebar__wrapper">
-        <div className="sidebar">
+        <div className={`sidebar ${sidebarSm ? ' sidebar--sm' : ''}`}>
           {showCatPopup ? (
             <div className="sidebar__cat-form-cont">
               <form onSubmit={onCatSubmit} className="sidebar__cat-form">

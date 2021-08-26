@@ -13,6 +13,7 @@ class App extends Component {
     categories: localStorage.getItem('categories')
       ? JSON.parse(localStorage.getItem('categories'))
       : initialCategories,
+    sidebarSm: true,
   }
 
   setCatPopup = () => {
@@ -101,6 +102,13 @@ class App extends Component {
     if (e.target !== e.currentTarget) return
     this.setState({
       activeCatIndex: idx,
+      sidebarSm: true
+    })
+  }
+
+  setSmallSidebar = (val) => {
+    this.setState({
+      sidebarSm: val,
     })
   }
 
@@ -112,6 +120,7 @@ class App extends Component {
           activeCatIndex={this.state.activeCatIndex}
           setActiveCat={this.setActiveCat}
           showCatPopup={this.state.showCatPopup}
+          sidebarSm={this.state.sidebarSm}
           setCatPopup={this.setCatPopup}
           currentCatText={this.state.currentCatText}
           onCatText={this.onCatText}
@@ -125,6 +134,7 @@ class App extends Component {
           onTaskText={this.onTaskText}
           onTaskSubmit={this.onTaskSubmit}
           onTaskDelete={this.onTaskDelete}
+          setSmallSidebar={this.setSmallSidebar}
         />
       </div>
     )

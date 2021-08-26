@@ -1,7 +1,31 @@
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {
+      @content;
+    } //600px
+  }
+  @if $breakpoint == tab-port {
+    @media only screen and (max-width: 56.25em) {
+      @content;
+    } //900px
+  }
+  @if $breakpoint == tab-land {
+    @media only screen and (max-width: 75em) {
+      @content;
+    } //1200px
+  }
+  @if $breakpoint == big-desktop {
+    @media only screen and (min-width: 112.5em) {
+      @content;
+    } //1800
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: inherit;
 }
 
 html {
@@ -11,23 +35,42 @@ html {
 body {
   line-height: 1.5;
   overflow-y: scroll;
+  font-family: 'Source Sans Pro', sans-serif;
 }
 
 .app {
   display: grid;
   grid-template-columns: 35rem 1fr;
+  @include respond(tab-port) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sidebar {
   width: 35rem;
   min-height: 100vh;
   background: #0086c2;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+
+  &--sm {
+    @include respond(tab-port) { 
+      display: none;
+    }
+  }
+
+  @include respond(tab-port) {
+    width: 100%;
+  }
 
   &__cat-form-cont {
     position: fixed;
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.3);
+    z-index: 2;
   }
 
   &__cat-form {
@@ -43,7 +86,7 @@ body {
 
     &-close {
       position: absolute;
-      background: rgba(#fff, 0.5);
+      background: rgba(#fff, 0.8);
       width: 3rem;
       height: 3rem;
       border-radius: 50px;
@@ -74,7 +117,6 @@ body {
     &-input {
       padding: 2rem;
       border: none;
-      border: none;
       background: #eee;
       width: 100%;
       border-radius: 5px;
@@ -83,49 +125,42 @@ body {
       font-weight: 700;
 
       /* Code for Modern Browsers */
-&::placeholder { 
-  color: #999;
-  font-size: 1.8rem;
-  
-}
+      &::placeholder {
+        color: #999;
+        font-size: 1.8rem;
+      }
 
-/* Code for WebKit, Blink, Edge */
-&::-webkit-input-placeholder { 
-  color: #999;
-  font-size: 1.8rem;
-  
-}
-  
-/* Code for Internet Explorer 10-11 */
-&:-ms-input-placeholder { 
-  color: #999;
-  font-size: 1.8rem;
-  
-}
-  
-/* Code for Microsoft Edge */
-&::-ms-input-placeholder { 
-  color: #999;
-  font-size: 1.8rem;
-  
-}
-  
-/* Code for Mozilla Firefox 4 to 18 */
-&:-moz-placeholder { 
-  opacity: 1;        
-  color: #999;
-  font-size: 1.8rem;
-  
-}
-  
-/* Code for Mozilla Firefox 19+ */
-&::-moz-placeholder { 
-  opacity: 1;
-  color: #999;
-  font-size: 1.8rem;
-  
-}
+      /* Code for WebKit, Blink, Edge */
+      &::-webkit-input-placeholder {
+        color: #999;
+        font-size: 1.8rem;
+      }
 
+      /* Code for Internet Explorer 10-11 */
+      &:-ms-input-placeholder {
+        color: #999;
+        font-size: 1.8rem;
+      }
+
+      /* Code for Microsoft Edge */
+      &::-ms-input-placeholder {
+        color: #999;
+        font-size: 1.8rem;
+      }
+
+      /* Code for Mozilla Firefox 4 to 18 */
+      &:-moz-placeholder {
+        opacity: 1;
+        color: #999;
+        font-size: 1.8rem;
+      }
+
+      /* Code for Mozilla Firefox 19+ */
+      &::-moz-placeholder {
+        opacity: 1;
+        color: #999;
+        font-size: 1.8rem;
+      }
 
       &:focus {
         outline: none;
@@ -151,8 +186,14 @@ body {
     align-items: center;
     padding: 1.5rem 2rem;
     background: #0078ae;
-    border-radius: 5px;
     padding: 3rem 2rem;
+    position: fixed;
+    width: 35rem;
+
+    @include respond(tab-port) {
+      width: 100%;
+    }
+
     &-title {
       font-size: 2rem;
       color: #fff;
@@ -172,17 +213,33 @@ body {
     }
   }
 
-  &__cat-list-cont {
-    padding: 0rem 0rem;
-  }
   &__cat-list {
+    padding: 100px 0 0 0;
     list-style: none;
+    height: 100vh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 1px;
+      height: 3px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #fff;
+      border-radius: 0px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #b3afb3;
+    }
+    &::-webkit-scrollbar-track {
+      background: #0086c2;
+      border-radius: 0px;
+      box-shadow: inset 0px 0px 0px 0px #f0f0f0;
+    }
   }
   &__cat {
     color: #fff;
     font-size: 1.8rem;
     padding: 3rem 2rem;
-    border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
     display: flex;
@@ -226,15 +283,35 @@ body {
   padding: 0 3rem;
   justify-content: space-between;
   box-shadow: 0 10px 100px rgba(#999, 0.1);
+  position: fixed;
+  width: calc(100% - 35rem);
+  top: 0;
+  right: 0;
+
+  @include respond(tab-port) {
+    width: 100%;
+  }
+
+
+  @include respond(phone) { 
+    padding: 0 2rem;
+  }
+
   &__input {
+    width: 0;
     flex-grow: 1;
     border: none;
-    min-height: 10rem;
+    min-height: 100px;
     padding: 0 2rem 0 0;
 
     font-size: 2rem;
     color: #666;
     font-weight: 700;
+
+    @include respond(phone) { 
+      min-height: 80px;
+    }
+
     &:focus {
       outline: none;
     }
@@ -293,13 +370,25 @@ body {
 }
 
 .tasks {
-  padding: 5rem;
+  padding: 14rem 4rem 4rem 4rem;
+
+  @include respond(phone) { 
+    padding: 12rem 2rem 10rem 2rem;
+  }
+
   &__list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 3rem;
     max-width: 150rem;
     margin: auto;
+
+    @include respond(tab-land) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @include respond(phone) {
+      grid-template-columns: 1fr;
+    }
   }
   &__list-item {
     background: #fff;
@@ -348,5 +437,23 @@ body {
       color: #777;
       font-size: 1.5rem;
     }
+  }
+}
+
+.sidebar-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #0078ae;
+  color: #fff;
+  font-weight: 700;
+  font-size: 2rem;
+  border: none;
+  padding: 2rem;
+  box-shadow:  0 10px 100px rgba(0, 0, 0, 0.1);
+  display: none;
+  @include respond(tab-port) {
+    display: block;
   }
 }
