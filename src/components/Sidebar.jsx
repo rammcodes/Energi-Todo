@@ -60,7 +60,7 @@ class Sidebar extends Component {
                         activeCatIndex === idx ? 'sidebar__cat--active' : ''
                       }`}
                     >
-                      <span>{item.name}</span>
+                      <span className="sidebar__cat-name">{item.name}</span>
                       <div
                         className="sidebar__cat-trash-icon-cont"
                         onClick={() => onCatDelete(idx)}

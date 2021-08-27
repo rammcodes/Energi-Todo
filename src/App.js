@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import './App.scss'
 import Sidebar from './components/Sidebar'
 import Main from './components/Main'
 import initialCategories from './data/InitialCategories'
+import './App.scss'
 
 class App extends Component {
   state = {
